@@ -26,15 +26,12 @@ void RenderWindow(){
         exit(EXIT_FAILURE);
     }
  
- 
     glfwMakeContextCurrent(window);
     if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
     {
         std::cout << "Failed to initialize OpenGL context" << std::endl;
     }
     glfwSwapInterval(1);
- 
-    // NOTE: OpenGL error checks have been omitted for brevity
  
     while (!glfwWindowShouldClose(window))
     {
