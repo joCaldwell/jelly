@@ -1,0 +1,2 @@
+/bin/ar qc libjelly.a CMakeFiles/jelly.dir/libs/imgui/imgui.cpp.o CMakeFiles/jelly.dir/libs/imgui/imgui_demo.cpp.o CMakeFiles/jelly.dir/libs/imgui/imgui_draw.cpp.o CMakeFiles/jelly.dir/libs/imgui/imgui_impl_glfw.cpp.o CMakeFiles/jelly.dir/libs/imgui/imgui_impl_opengl3.cpp.o CMakeFiles/jelly.dir/libs/imgui/imgui_tables.cpp.o CMakeFiles/jelly.dir/libs/imgui/imgui_widgets.cpp.o CMakeFiles/jelly.dir/libs/glad/glad.c.o
+/bin/ranlib libjelly.a
