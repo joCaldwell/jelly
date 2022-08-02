@@ -16,6 +16,13 @@ set(SOURCE_FILES
 
     # glad
     ${JLY_LIBRARIES_DIR}/glad/glad.c
+
+    #JLY
+    ${JLY_SOURCE_DIR}/window.cpp
+    ${JLY_SOURCE_DIR}/object.cpp
+    ${JLY_SOURCE_DIR}/shader.cpp
+    ${JLY_SOURCE_DIR}/scene.cpp
+    ${JLY_SOURCE_DIR}/translation.cpp
 )
 
 
