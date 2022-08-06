@@ -15,13 +15,9 @@ void print() {
     std::cout << "here " << std::endl;
 };
 
-
-void RenderScene(Scene scene){
-
-    GLFWwindow* window;
+void RenderScene(Scene scene, Camera cam){
     const char* glsl_version = "#version 450";
-    GLuint vertex_buffer, vertex_shader, fragment_shader, program;
-    GLint mvp_location, vpos_location, vcol_location;
+    GLFWwindow* window;
  
     if (!glfwInit())
         exit(EXIT_FAILURE);
@@ -99,7 +95,9 @@ void RenderScene(Scene scene){
     glm::vec3 obrot = glm::vec3(0);
     glm::vec3 obtrans = glm::vec3(1);
     glm::vec3 obscale= glm::vec3(1);
+    double time;
     while (!glfwWindowShouldClose(window)) {
+        time = glfwGetTime();
         glEnable(GL_DEPTH_TEST);  
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -117,9 +115,13 @@ void RenderScene(Scene scene){
             glm::mat4 rotate = getRotationMatrix(cur_obj.rotation);
             glm::mat4 translate = getTranslationMatrix(cur_obj.translation);
             glm::mat4 scaling= getScaleMatrix(cur_obj.scaling);
+            glm::mat4 world = getViewMatrix(cam);
+            glm::mat4 perspective = getProjectionMatrix(1.3, ratio, 0,-100);
             setUniform4matF("rotation", rotate, shaderProgram);
             setUniform4matF("translation", translate, shaderProgram);
             setUniform4matF("scaling", scaling, shaderProgram);
+            setUniform4matF("view", world, shaderProgram);
+            setUniform4matF("perspective", perspective, shaderProgram);
             glBindVertexArray(VAO[i]);
             glDrawElements(GL_TRIANGLES, scene.objects[i].triangles.size()*3, GL_UNSIGNED_INT, 0);
         }
@@ -130,9 +132,10 @@ void RenderScene(Scene scene){
         ImGui::NewFrame();
         ImGui::Begin("Debugger");
         ImGui::Text("hello wold %i \n", (int)scene.objects[0].triangles[0].y);
-        ImGui::SliderFloat3("rotation", &scene.objects[0].rotation.x, 0.0f, 4*PI);
+        ImGui::SliderFloat3("rotation", &scene.objects[0].rotation.x, 0.0f, 4*PI); 
         ImGui::SliderFloat3("translation", &scene.objects[0].translation.x, -1.0f, 1.0f);
         ImGui::SliderFloat3("scaling", &scene.objects[0].scaling.x, -1.0f, 1.0f);
+        ImGui::SliderFloat3("cam", &cam.pos.x, -2,2);
         ImGui::End();
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

@@ -3,11 +3,14 @@
 #include <string>
 #include <vector>
 
+#define UP glm::vec3(0.0f, 1.0f, 0.0f)
+
 // Initial refernces
 struct Object;
 struct Scene;
+struct Camera;
 
-void RenderScene(Scene);
+void RenderScene(Scene, Camera);
 
 struct Object {
     Object();
@@ -26,6 +29,16 @@ struct Scene {
     Scene();
     void addObject(Object obj);
     std::vector<Object> objects;
+};
+
+struct Camera {
+    Camera();
+    Camera(glm::vec3 pos, glm::vec3 target);
+    glm::vec3 pos;
+    glm::vec3 dir;
+    glm::vec3 raxis;
+    glm::vec3 uaxis;
+
 };
 
 

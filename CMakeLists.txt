@@ -23,6 +23,7 @@ set(SOURCE_FILES
     ${JLY_SOURCE_DIR}/shader.cpp
     ${JLY_SOURCE_DIR}/scene.cpp
     ${JLY_SOURCE_DIR}/translation.cpp
+    ${JLY_SOURCE_DIR}/camera.cpp
 )
 
 
