@@ -1,8 +1,8 @@
-#include "internal.hpp"
 #include <iostream>
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include "internal.hpp"
 
 glm::mat4 getRotationMatrix(glm::vec3 rotation){
     glm::mat4 result;

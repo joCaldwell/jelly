@@ -1,9 +1,9 @@
-#include "internal.hpp"
 #include <glad/glad.h>
 #include <fstream>
 #include <sstream>
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "internal.hpp"
 
 std::string parseShader(std::string file_string) {
     std::ifstream file;

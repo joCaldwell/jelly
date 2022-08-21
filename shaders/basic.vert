@@ -13,5 +13,6 @@ void main()
     pos1 = aPos;
     mat4 model = translation * rotation * scaling;
     pos = perspective * view * model * vec4(aPos,1);
-    gl_Position = vec4(pos.x, pos.y, pos.z, 1.0);
+    //pos = perspective * model * vec4(aPos,1);
+    gl_Position = pos;
 };

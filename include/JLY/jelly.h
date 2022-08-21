@@ -1,20 +1,39 @@
 #pragma once
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
 
 #define UP glm::vec3(0.0f, 1.0f, 0.0f)
+#define RIGHT glm::vec3(1.0f, 0.0f, 0.0f)
+#define FORWARD glm::vec3(0.0f, 0.0f, 1.0f)
+
+#ifndef F_MOVEMENT_SPD
+#define F_MOVEMENT_SPD 0.1f
+#endif
+#define B_MOVEMENT_SPD 0.1f
+#define R_MOVEMENT_SPD 0.1f
+#define L_MOVEMENT_SPD 0.1f
+#define U_MOVEMENT_SPD 0.1f
+#define D_MOVEMENT_SPD 0.1f
+
+#define ROTATE_SPEED 0.1f
+#define PITCH_SPEED 0.1f
+#define YAW_SPEEED 0.1f
+#define ROLL_SPEED 0.1f
 
 // Initial refernces
 struct Object;
 struct Scene;
 struct Camera;
 
-void RenderScene(Scene, Camera);
+void RenderScene(Scene);
 
 struct Object {
     Object();
     Object(std::string &file);
+    void moveCenter(glm::vec3);
+
     unsigned int num_verticies;
     unsigned int num_triangles;
     std::vector<glm::vec3> verticies;
@@ -25,15 +44,15 @@ struct Object {
     glm::vec3 scaling;
 };
 
-struct Scene {
-    Scene();
-    void addObject(Object obj);
-    std::vector<Object> objects;
-};
-
 struct Camera {
     Camera();
     Camera(glm::vec3 pos, glm::vec3 target);
+    void moveCam(glm::vec3);
+    void rotateCam(glm::vec3);
+    float fov;
+    float near;
+    float far;
+    glm::vec3 target;
     glm::vec3 pos;
     glm::vec3 dir;
     glm::vec3 raxis;
@@ -41,5 +60,13 @@ struct Camera {
 
 };
 
+struct Scene {
+    Scene(Camera &cam);
+    void addObject(Object obj);
+    void addCamera(Camera &cam);
+    std::vector<Object> objects;
+    Camera &cam;
+};
 
 void use_shader(std::string file);
+void processInput(GLFWwindow *window, Scene scene);

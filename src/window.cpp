@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <iostream>
 #include <filesystem>
-#include "internal.hpp"
-#include <glm/glm.hpp>
 #include "glad/glad.h"
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
+#include "internal.hpp"
 
 #define PI 3.1415
 
@@ -15,7 +15,7 @@ void print() {
     std::cout << "here " << std::endl;
 };
 
-void RenderScene(Scene scene, Camera cam){
+void RenderScene(Scene scene){
     const char* glsl_version = "#version 450";
     GLFWwindow* window;
  
@@ -25,7 +25,7 @@ void RenderScene(Scene scene, Camera cam){
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
  
-    window = glfwCreateWindow(1000, 640, "Test", NULL, NULL);
+    window = glfwCreateWindow(1000, 640, "test", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -96,11 +96,14 @@ void RenderScene(Scene scene, Camera cam){
     glm::vec3 obtrans = glm::vec3(1);
     glm::vec3 obscale= glm::vec3(1);
     double time;
+    scene.cam.fov = 1.3;
+    scene.cam.near = 0.1;
+    scene.cam.far = 100;
+    scene.objects[0].moveCenter(glm::vec3(0,0,5));
     while (!glfwWindowShouldClose(window)) {
         time = glfwGetTime();
         glEnable(GL_DEPTH_TEST);  
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
@@ -110,13 +113,15 @@ void RenderScene(Scene scene, Camera cam){
         glClearColor(0.1,0.3,0.8,1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        processInput(window, scene);
+
         for (int i=0; i<scene.objects.size(); i++){
             Object cur_obj = scene.objects[i];
             glm::mat4 rotate = getRotationMatrix(cur_obj.rotation);
             glm::mat4 translate = getTranslationMatrix(cur_obj.translation);
             glm::mat4 scaling= getScaleMatrix(cur_obj.scaling);
-            glm::mat4 world = getViewMatrix(cam);
-            glm::mat4 perspective = getProjectionMatrix(1.3, ratio, 0,-100);
+            glm::mat4 world = getViewMatrix(scene.cam);
+            glm::mat4 perspective = getProjectionMatrix(scene.cam.fov, ratio, scene.cam.near,scene.cam.far);
             setUniform4matF("rotation", rotate, shaderProgram);
             setUniform4matF("translation", translate, shaderProgram);
             setUniform4matF("scaling", scaling, shaderProgram);
@@ -131,11 +136,21 @@ void RenderScene(Scene scene, Camera cam){
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
         ImGui::Begin("Debugger");
-        ImGui::Text("hello wold %i \n", (int)scene.objects[0].triangles[0].y);
+        if (ImGui::Button("inc"))
+        {
+            scene.cam.moveCam(glm::vec3(0.1,0,0));
+        };
+        if (ImGui::Button("dec"))
+        {
+            scene.cam.moveCam(glm::vec3(-0.1,0,0));
+        };
         ImGui::SliderFloat3("rotation", &scene.objects[0].rotation.x, 0.0f, 4*PI); 
         ImGui::SliderFloat3("translation", &scene.objects[0].translation.x, -1.0f, 1.0f);
         ImGui::SliderFloat3("scaling", &scene.objects[0].scaling.x, -1.0f, 1.0f);
-        ImGui::SliderFloat3("cam", &cam.pos.x, -2,2);
+        ImGui::SliderFloat3("cam", &scene.cam.pos.x, -2,2);
+        ImGui::SliderFloat("fov", &scene.cam.fov, 0,2*PI);
+        ImGui::SliderFloat("near", &scene.cam.near, -5,5);
+        ImGui::SliderFloat("far", &scene.cam.far, -5,5);
         ImGui::End();
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

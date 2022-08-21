@@ -1,10 +1,10 @@
-#include "internal.hpp"
 #include <iostream>
 #include <string.h>
 #include <string>
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include "internal.hpp"
 
 Object::Object()
     : num_verticies(0), num_triangles(0), verticies(std::vector<glm::vec3>(0)), triangles(std::vector<glm::vec3>(0)),
@@ -42,4 +42,9 @@ Object::Object(std::string &file)
     };
     this->center/=this->num_verticies;
     myfile.close();
+};
+
+void Object::moveCenter(glm::vec3 centerchange) {
+    this->translation += centerchange;
+    center += centerchange;
 };
