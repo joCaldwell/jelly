@@ -23,6 +23,21 @@ Object::Object(std::string &file)
     }
     std::string line;
     while(std::getline(myfile, line)){
+        //g group name
+        //s smooting group
+        //o object name
+        //bevel interpolation (bevel)
+        //color interpolation (c_interp)
+        //dissolve interpolation (d_interp)
+        //level of detail (lod)
+        //material name (usemtl)
+        //material library (mtllib)
+        //shadow casting (shadow_obj)
+        //ray tracing (trace_obj)
+        //curve approximation technique (ctech)
+        //surface approximation technique (stech)
+        
+        //v geometric verticies
         if (line.find('v') != std::string::npos) {
             this->num_verticies++;
             std::istringstream v(line.substr(2));
@@ -31,6 +46,10 @@ Object::Object(std::string &file)
             glm::vec3 vert(x,y,z);
             this->verticies.push_back(vert);
             this->center += vert;
+        //vt texture verticies
+        //vn vertex normals
+        //vp parameter space verticies
+        //f face
         } else if (line.find('f') != std::string::npos) {
             this->num_triangles++;
             std::istringstream f(line.substr(2));
@@ -39,6 +58,11 @@ Object::Object(std::string &file)
             sscanf(linec, "f %i %i %i", &a, &b, &c);
             this->triangles.push_back(glm::vec3(a-1,b-1,c-1));
         };
+        //p point
+        //l line
+        //curv curve
+        //curv2 2d curve
+        //surf surface
     };
     this->center/=this->num_verticies;
     myfile.close();

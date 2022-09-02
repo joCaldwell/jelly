@@ -4,28 +4,32 @@
 #include <string>
 #include <vector>
 
-#define UP glm::vec3(0.0f, 1.0f, 0.0f)
+#define PI 3.141592
 #define RIGHT glm::vec3(1.0f, 0.0f, 0.0f)
+#define UP glm::vec3(0.0f, 1.0f, 0.0f)
 #define FORWARD glm::vec3(0.0f, 0.0f, 1.0f)
 
 #ifndef F_MOVEMENT_SPD
-#define F_MOVEMENT_SPD 0.1f
+#define F_MOVEMENT_SPD 0.025f
 #endif
-#define B_MOVEMENT_SPD 0.1f
-#define R_MOVEMENT_SPD 0.1f
-#define L_MOVEMENT_SPD 0.1f
-#define U_MOVEMENT_SPD 0.1f
-#define D_MOVEMENT_SPD 0.1f
+#define B_MOVEMENT_SPD 0.025f
+#define R_MOVEMENT_SPD 0.025f
+#define L_MOVEMENT_SPD 0.025f
+#define U_MOVEMENT_SPD 0.025f
+#define D_MOVEMENT_SPD 0.025f
 
-#define ROTATE_SPEED 0.1f
-#define PITCH_SPEED 0.1f
-#define YAW_SPEEED 0.1f
-#define ROLL_SPEED 0.1f
+#define ROTATE_SPEED 0.025f
+#define PITCH_SPEED 0.025f
+#define YAW_SPEEED 0.025f
+#define ROLL_SPEED 0.025f
 
 // Initial refernces
+
+
 struct Object;
 struct Scene;
 struct Camera;
+
 
 void RenderScene(Scene);
 
@@ -53,12 +57,14 @@ struct Camera {
     float near;
     float far;
     glm::vec3 target;
+    glm::vec3 rotation;
     glm::vec3 pos;
     glm::vec3 dir;
     glm::vec3 raxis;
     glm::vec3 uaxis;
-
 };
+
+extern Camera *main_cam;
 
 struct Scene {
     Scene(Camera &cam);

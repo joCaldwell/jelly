@@ -9,15 +9,15 @@
 #include "imgui/imgui_impl_opengl3.h"
 #include "internal.hpp"
 
-#define PI 3.1415
-
 void print() {
     std::cout << "here " << std::endl;
 };
 
+Camera *main_cam;
 void RenderScene(Scene scene){
     const char* glsl_version = "#version 450";
     GLFWwindow* window;
+    main_cam = &scene.cam;
  
     if (!glfwInit())
         exit(EXIT_FAILURE);
@@ -25,7 +25,7 @@ void RenderScene(Scene scene){
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
  
-    window = glfwCreateWindow(1000, 640, "test", NULL, NULL);
+    window = glfwCreateWindow(1000, 640, "Test", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -136,21 +136,6 @@ void RenderScene(Scene scene){
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
         ImGui::Begin("Debugger");
-        if (ImGui::Button("inc"))
-        {
-            scene.cam.moveCam(glm::vec3(0.1,0,0));
-        };
-        if (ImGui::Button("dec"))
-        {
-            scene.cam.moveCam(glm::vec3(-0.1,0,0));
-        };
-        ImGui::SliderFloat3("rotation", &scene.objects[0].rotation.x, 0.0f, 4*PI); 
-        ImGui::SliderFloat3("translation", &scene.objects[0].translation.x, -1.0f, 1.0f);
-        ImGui::SliderFloat3("scaling", &scene.objects[0].scaling.x, -1.0f, 1.0f);
-        ImGui::SliderFloat3("cam", &scene.cam.pos.x, -2,2);
-        ImGui::SliderFloat("fov", &scene.cam.fov, 0,2*PI);
-        ImGui::SliderFloat("near", &scene.cam.near, -5,5);
-        ImGui::SliderFloat("far", &scene.cam.far, -5,5);
         ImGui::End();
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
