@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include "internal.hpp"
 
-void processInput(GLFWwindow *window, Scene scene) {
+void processInput(GLFWwindow *window) {
     //cam->movement
     if (glfwGetKey(window, GLFW_KEY_W)) {
         main_cam->moveCam(glm::vec3(0,0,F_MOVEMENT_SPD));

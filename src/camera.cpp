@@ -28,18 +28,6 @@ void Camera::moveCam(glm::vec3 change) {
     glm::vec3 new_change = matrix*change;
     this->pos += new_change;
     this->dir = this->pos + this->target;
-    std::cout <<  "u " << uaxis.x << ", "
-        << new_change.x << ", "
-        << pos.x
-        << std::endl;
-    std::cout <<  "r " << raxis.x << ", "
-        << raxis.y << ", "
-        << raxis.z
-        << std::endl;
-    std::cout <<  "target " << target.x << ", "
-        << target.y << ", "
-        << target.z
-        << std::endl;
 };
 
 void Camera::rotateCam(glm::vec3 Drotation) {

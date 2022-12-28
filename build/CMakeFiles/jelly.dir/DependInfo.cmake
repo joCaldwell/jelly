@@ -16,6 +16,13 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/josh/cpp/jelly/libs/imgui/imgui_impl_opengl3.cpp" "CMakeFiles/jelly.dir/libs/imgui/imgui_impl_opengl3.cpp.o" "gcc" "CMakeFiles/jelly.dir/libs/imgui/imgui_impl_opengl3.cpp.o.d"
   "/home/josh/cpp/jelly/libs/imgui/imgui_tables.cpp" "CMakeFiles/jelly.dir/libs/imgui/imgui_tables.cpp.o" "gcc" "CMakeFiles/jelly.dir/libs/imgui/imgui_tables.cpp.o.d"
   "/home/josh/cpp/jelly/libs/imgui/imgui_widgets.cpp" "CMakeFiles/jelly.dir/libs/imgui/imgui_widgets.cpp.o" "gcc" "CMakeFiles/jelly.dir/libs/imgui/imgui_widgets.cpp.o.d"
+  "/home/josh/cpp/jelly/src/camera.cpp" "CMakeFiles/jelly.dir/src/camera.cpp.o" "gcc" "CMakeFiles/jelly.dir/src/camera.cpp.o.d"
+  "/home/josh/cpp/jelly/src/input.cpp" "CMakeFiles/jelly.dir/src/input.cpp.o" "gcc" "CMakeFiles/jelly.dir/src/input.cpp.o.d"
+  "/home/josh/cpp/jelly/src/object.cpp" "CMakeFiles/jelly.dir/src/object.cpp.o" "gcc" "CMakeFiles/jelly.dir/src/object.cpp.o.d"
+  "/home/josh/cpp/jelly/src/scene.cpp" "CMakeFiles/jelly.dir/src/scene.cpp.o" "gcc" "CMakeFiles/jelly.dir/src/scene.cpp.o.d"
+  "/home/josh/cpp/jelly/src/shader.cpp" "CMakeFiles/jelly.dir/src/shader.cpp.o" "gcc" "CMakeFiles/jelly.dir/src/shader.cpp.o.d"
+  "/home/josh/cpp/jelly/src/translation.cpp" "CMakeFiles/jelly.dir/src/translation.cpp.o" "gcc" "CMakeFiles/jelly.dir/src/translation.cpp.o.d"
+  "/home/josh/cpp/jelly/src/window.cpp" "CMakeFiles/jelly.dir/src/window.cpp.o" "gcc" "CMakeFiles/jelly.dir/src/window.cpp.o.d"
   )
 
 # Targets to which this target links.

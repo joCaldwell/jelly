@@ -9,14 +9,13 @@
 #include "imgui/imgui_impl_opengl3.h"
 #include "internal.hpp"
 
-void print() {
-    std::cout << "here " << std::endl;
-};
-
 Camera *main_cam;
+Scene *main_scene;
+
 void RenderScene(Scene scene){
     const char* glsl_version = "#version 450";
     GLFWwindow* window;
+    main_scene = &scene;
     main_cam = &scene.cam;
  
     if (!glfwInit())
@@ -26,15 +25,13 @@ void RenderScene(Scene scene){
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
  
     window = glfwCreateWindow(1000, 640, "Test", NULL, NULL);
-    if (!window)
-    {
+    if (!window) {
         glfwTerminate();
         exit(EXIT_FAILURE);
     }
  
     glfwMakeContextCurrent(window);
-    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
-    {
+    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
         std::cout << "Failed to initialize OpenGL context" << std::endl;
     }
     glfwSwapInterval(1);
@@ -59,17 +56,17 @@ void RenderScene(Scene scene){
     for (int i=0; i<scene.objects.size(); i++) {
         Object cur_obj = scene.objects[i];
         float verticies[cur_obj.verticies.size()*3];
-        int triangles[cur_obj.triangles.size()*3];
+        int indicies[cur_obj.indexes.size()*3];
 
         for (int j=0; j<sizeof(verticies)/sizeof(float); j+=3) {
             verticies[j+0] = cur_obj.verticies[j/3].x;
             verticies[j+1] = cur_obj.verticies[j/3].y;
             verticies[j+2] = cur_obj.verticies[j/3].z;
         };
-        for (int j=0; j<sizeof(triangles)/sizeof(int); j+=3) {
-            triangles[j+0] = cur_obj.triangles[j/3].x;
-            triangles[j+1] = cur_obj.triangles[j/3].y;
-            triangles[j+2] = cur_obj.triangles[j/3].z;
+        for (int j=0; j<sizeof(indicies)/sizeof(int); j+=3) {
+            indicies[j+0] = cur_obj.indexes[j/3].verticies.x;
+            indicies[j+1] = cur_obj.indexes[j/3].verticies.y;
+            indicies[j+2] = cur_obj.indexes[j/3].verticies.z;
         };
 
         glBindVertexArray(VAO[i]);
@@ -77,7 +74,7 @@ void RenderScene(Scene scene){
         glBufferData(GL_ARRAY_BUFFER, sizeof(verticies), verticies, GL_STATIC_DRAW);
         
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO[i]);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(triangles), triangles, GL_STATIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indicies), indicies, GL_STATIC_DRAW);
 
         glVertexAttribPointer(0,3,GL_FLOAT, GL_FALSE, 3*sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
@@ -113,7 +110,7 @@ void RenderScene(Scene scene){
         glClearColor(0.1,0.3,0.8,1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        processInput(window, scene);
+        processInput(window);
 
         for (int i=0; i<scene.objects.size(); i++){
             Object cur_obj = scene.objects[i];
@@ -128,7 +125,7 @@ void RenderScene(Scene scene){
             setUniform4matF("view", world, shaderProgram);
             setUniform4matF("perspective", perspective, shaderProgram);
             glBindVertexArray(VAO[i]);
-            glDrawElements(GL_TRIANGLES, scene.objects[i].triangles.size()*3, GL_UNSIGNED_INT, 0);
+            glDrawElements(GL_TRIANGLES, scene.objects[i].indexes.size()*3, GL_UNSIGNED_INT, 0);
         }
 
         //my imgui debugger

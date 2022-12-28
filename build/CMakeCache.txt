@@ -31,7 +31,7 @@ CMAKE_BUILD_TYPE:STRING=
 CMAKE_COLOR_MAKEFILE:BOOL=ON
 
 //CXX compiler
-CMAKE_CXX_COMPILER:FILEPATH=/bin/c++
+CMAKE_CXX_COMPILER:STRING=/bin/c++
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -57,7 +57,7 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
-CMAKE_C_COMPILER:FILEPATH=/bin/cc
+CMAKE_C_COMPILER:STRING=/bin/cc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -102,6 +102,9 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //Enable/Disable output of compile commands during generation.
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
+
+//Value Computed by CMake.
+CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/home/josh/cpp/jelly/build/CMakeFiles/pkgRedirects
 
 //User executables (bin)
 CMAKE_INSTALL_BINDIR:PATH=bin
@@ -538,6 +541,18 @@ X11_xcb_icccm_INCLUDE_PATH:PATH=/usr/include
 X11_xcb_icccm_LIB:FILEPATH=/usr/lib/libxcb-icccm.so
 
 //Path to a file.
+X11_xcb_keysyms_INCLUDE_PATH:PATH=/usr/include
+
+//Path to a library.
+X11_xcb_keysyms_LIB:FILEPATH=/usr/lib/libxcb-keysyms.so
+
+//Path to a file.
+X11_xcb_randr_INCLUDE_PATH:PATH=/usr/include
+
+//Path to a library.
+X11_xcb_randr_LIB:FILEPATH=/usr/lib/libxcb-randr.so
+
+//Path to a file.
 X11_xcb_util_INCLUDE_PATH:PATH=/usr/include
 
 //Path to a library.
@@ -551,6 +566,12 @@ X11_xcb_xfixes_LIB:FILEPATH=/usr/lib/libxcb-xfixes.so
 
 //Path to a library.
 X11_xcb_xkb_LIB:FILEPATH=/usr/lib/libxcb-xkb.so
+
+//Path to a file.
+X11_xcb_xtest_INCLUDE_PATH:PATH=/usr/include
+
+//Path to a library.
+X11_xcb_xtest_LIB:FILEPATH=/usr/lib/libxcb-xtest.so
 
 //Path to a file.
 X11_xkbcommon_INCLUDE_PATH:PATH=/usr/include
@@ -611,9 +632,9 @@ CMAKE_CACHEFILE_DIR:INTERNAL=/home/josh/cpp/jelly/build
 //Major version of cmake used to create the current loaded cache
 CMAKE_CACHE_MAJOR_VERSION:INTERNAL=3
 //Minor version of cmake used to create the current loaded cache
-CMAKE_CACHE_MINOR_VERSION:INTERNAL=23
+CMAKE_CACHE_MINOR_VERSION:INTERNAL=24
 //Patch version of cmake used to create the current loaded cache
-CMAKE_CACHE_PATCH_VERSION:INTERNAL=2
+CMAKE_CACHE_PATCH_VERSION:INTERNAL=1
 //ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
 CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
@@ -994,6 +1015,14 @@ X11_xcb_LIB-ADVANCED:INTERNAL=1
 X11_xcb_icccm_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_xcb_icccm_LIB
 X11_xcb_icccm_LIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: X11_xcb_keysyms_INCLUDE_PATH
+X11_xcb_keysyms_INCLUDE_PATH-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: X11_xcb_keysyms_LIB
+X11_xcb_keysyms_LIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: X11_xcb_randr_INCLUDE_PATH
+X11_xcb_randr_INCLUDE_PATH-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: X11_xcb_randr_LIB
+X11_xcb_randr_LIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_xcb_util_INCLUDE_PATH
 X11_xcb_util_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_xcb_util_LIB
@@ -1004,6 +1033,10 @@ X11_xcb_xfixes_INCLUDE_PATH-ADVANCED:INTERNAL=1
 X11_xcb_xfixes_LIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_xcb_xkb_LIB
 X11_xcb_xkb_LIB-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: X11_xcb_xtest_INCLUDE_PATH
+X11_xcb_xtest_INCLUDE_PATH-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: X11_xcb_xtest_LIB
+X11_xcb_xtest_LIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_xkbcommon_INCLUDE_PATH
 X11_xkbcommon_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_xkbcommon_LIB
@@ -1016,6 +1049,8 @@ X11_xkbcommon_X11_LIB-ADVANCED:INTERNAL=1
 X11_xkbfile_INCLUDE_PATH-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: X11_xkbfile_LIB
 X11_xkbfile_LIB-ADVANCED:INTERNAL=1
+//linker supports push/pop state
+_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
 __pkg_config_arguments_PKG_FONTCONFIG:INTERNAL=QUIET;fontconfig

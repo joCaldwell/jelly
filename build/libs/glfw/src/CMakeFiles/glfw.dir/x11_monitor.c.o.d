@@ -2,8 +2,8 @@ libs/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: \
  /home/josh/cpp/jelly/libs/glfw/src/x11_monitor.c \
  /usr/include/stdc-predef.h /home/josh/cpp/jelly/libs/glfw/src/internal.h \
  /home/josh/cpp/jelly/libs/glfw/src/../include/GLFW/glfw3.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stddef.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stdint.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stddef.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/bits/wordsize.h /usr/include/bits/timesize.h \
@@ -46,7 +46,7 @@ libs/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: \
  /usr/include/X11/keysymdef.h /usr/include/X11/Xatom.h \
  /usr/include/X11/Xresource.h /usr/include/X11/Xcursor/Xcursor.h \
  /usr/include/stdio.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include/stdarg.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include/stdarg.h \
  /usr/include/bits/types/__fpos_t.h /usr/include/bits/types/__mbstate_t.h \
  /usr/include/bits/types/__fpos64_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h /usr/include/bits/types/struct_FILE.h \
@@ -91,8 +91,8 @@ libs/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o: \
  /usr/include/bits/pthread_stack_min-dynamic.h \
  /usr/include/bits/pthread_stack_min.h \
  /home/josh/cpp/jelly/libs/glfw/src/posix_time.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed/limits.h \
- /usr/lib/gcc/x86_64-pc-linux-gnu/12.1.0/include-fixed/syslimits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed/limits.h \
+ /usr/lib/gcc/x86_64-pc-linux-gnu/12.2.0/include-fixed/syslimits.h \
  /usr/include/limits.h /usr/include/bits/posix1_lim.h \
  /usr/include/bits/local_lim.h /usr/include/bits/posix2_lim.h \
  /usr/include/stdlib.h /usr/include/bits/waitflags.h \
